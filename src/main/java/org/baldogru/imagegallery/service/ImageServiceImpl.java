@@ -27,6 +27,7 @@ public final class ImageServiceImpl implements ImageService {
     public ResponseEntity<ImageUploadResult> uploadImage(MultipartFile image, ImageUploadData uploadData) {
         RequestData requestData = requestWrappingService.wrapUploadData(image, uploadData);
         UploadRequestValidationResult validationResult = requestValidator.validateUploadRequest(requestData);
+        //CZEMU NOT_FOUND jest zwracany ? :P
         return new ResponseEntity<ImageUploadResult>(new ImageUploadResult(), HttpStatus.NOT_FOUND);
     }
 }
