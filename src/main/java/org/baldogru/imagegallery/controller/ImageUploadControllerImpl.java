@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@RestController
-@RequestMapping("/upload")
+
 class ImageUploadControllerImpl implements ImageUploadController {
 
     private final ImageService imageService;
@@ -22,7 +21,7 @@ class ImageUploadControllerImpl implements ImageUploadController {
     }
 
 
-    @PostMapping("")
+
     @Override
     public ResponseEntity<ImageUploadResult> uploadImage(MultipartFile image, ImageUploadData uploadData) {
         return imageService.uploadImage(image, uploadData);

@@ -3,18 +3,24 @@ package org.baldogru.imagegallery.controller;
 import org.baldogru.imagegallery.model.dto.ImageUploadData;
 import org.baldogru.imagegallery.model.dto.ImageUploadResult;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+@RestController
+@RequestMapping("/upload")
 public interface ImageUploadController {
 
     /**
-     *  Metoda pozwala na przes³anie pliku bêd¹cego obrazem.
-     *  Przes³any plik jest walidowany.
+     *  Metoda pozwala na przesï¿½anie pliku bï¿½dï¿½cego obrazem.
+     *  Przesï¿½any plik jest walidowany.
      *
      * @param image plik obrazu
-     * @param uploadData metadane przesy³anego pliku
+     * @param uploadData metadane przesyï¿½anego pliku
      * @return wynik operacji
      */
+    @PostMapping("")
     ResponseEntity<ImageUploadResult> uploadImage(MultipartFile image, ImageUploadData uploadData);
 
 }
