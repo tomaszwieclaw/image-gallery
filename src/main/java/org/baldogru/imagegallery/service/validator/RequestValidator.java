@@ -1,9 +1,9 @@
 package org.baldogru.imagegallery.service.validator;
 
 import org.baldogru.imagegallery.model.dto.RequestData;
-import org.baldogru.imagegallery.model.dto.UploadRequestValidationResult;
+import org.baldogru.imagegallery.model.dto.ValidationSummary;
 
 public interface RequestValidator {
 
-    UploadRequestValidationResult validateUploadRequest(RequestData requestData);
+    ValidationSummary validateRequest(RequestData requestData);
 }

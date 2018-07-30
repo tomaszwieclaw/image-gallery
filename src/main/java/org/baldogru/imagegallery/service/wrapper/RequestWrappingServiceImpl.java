@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public final class RequestWrappingServiceImpl implements RequestWrappingService {
+final class RequestWrappingServiceImpl implements RequestWrappingService {
 
     private final UploadRequestWrappingService uploadRequestWrappingService;
 

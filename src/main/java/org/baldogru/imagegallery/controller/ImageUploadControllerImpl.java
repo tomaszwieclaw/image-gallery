@@ -8,15 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 
-class ImageUploadControllerImpl implements ImageUploadController {
+final class ImageUploadControllerImpl implements ImageUploadController {
 
     private final ImageService imageService;
 
-    @Autowired
-    public ImageUploadControllerImpl(ImageService imageService) {
+    ImageUploadControllerImpl(ImageService imageService) {
         this.imageService = imageService;
     }
-
 
     @Override
     public ResponseEntity<ImageUploadResult> uploadImage(MultipartFile image, ImageUploadData uploadData) {

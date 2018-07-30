@@ -1,6 +1,6 @@
 package org.baldogru.imagegallery.constants;
 
-public enum ValidationResultType {
+public enum ValidationStatus {
     SUCCESS,
     FAIL;
 }

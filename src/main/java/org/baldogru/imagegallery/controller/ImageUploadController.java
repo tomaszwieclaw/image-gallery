@@ -13,11 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ImageUploadController {
 
     /**
-     *  Metoda pozwala na przes�anie pliku b�d�cego obrazem.
-     *  Przes�any plik jest walidowany.
+     *  Metoda pozwala na przesłanie pliku będącego obrazem.
+     *  Przesłany plik jest walidowany.
      *
      * @param image plik obrazu
-     * @param uploadData metadane przesy�anego pliku
+     * @param uploadData metadane przesyłanego pliku
      * @return wynik operacji
      */
     @PostMapping("")
