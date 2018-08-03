@@ -19,7 +19,7 @@ class ValidationSummaryFactoryImpl implements ValidationSummaryFactory {
     public ValidationSummary create(List<ValidationResult> validationResults) {
         List<ValidationResult> successValidationResults =
                 validationResults.stream().filter(isValidationResultSuccess()).collect(Collectors.toList());
-        ValidationStatus validationStatus = returnSuccessIfFailValidationResultsIsEmptyElseReturnFail(successValidationResults);
+        ValidationStatus validationStatus = returnFailIfSuccessValidationResultsIsEmptyElseReturnSuccess(successValidationResults);
         return ValidationSummary.builder()
                 .validationResults(validationResults)
                 .validationStatus(validationStatus)
@@ -32,10 +32,10 @@ class ValidationSummaryFactoryImpl implements ValidationSummaryFactory {
     }
 
 
-    private ValidationStatus returnSuccessIfFailValidationResultsIsEmptyElseReturnFail(List<ValidationResult> successValidationResults) {
+    private ValidationStatus returnFailIfSuccessValidationResultsIsEmptyElseReturnSuccess(List<ValidationResult> successValidationResults) {
         if (successValidationResults == null || successValidationResults.size() == 0) {
-            return ValidationStatus.SUCCESS;
+            return ValidationStatus.FAIL;
         }
-        return ValidationStatus.FAIL;
+        return ValidationStatus.SUCCESS;
     }
 }
