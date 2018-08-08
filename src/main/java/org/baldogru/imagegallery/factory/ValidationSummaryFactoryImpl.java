@@ -21,27 +21,11 @@ class ValidationSummaryFactoryImpl implements ValidationSummaryFactory {
 
     @Override
     public ValidationSummary create(List<ValidationResult> validationResults) {
-        List<ValidationResult> successValidationResults =
-                validationResults.stream()
-                        .filter(isValidationResultSuccess())
-                        .collect(Collectors.toList());
         ValidationStatus validationStatus = validationStatusService.validate(validationResults);
         return ValidationSummary.builder()
                 .validationResults(validationResults)
                 .validationStatus(validationStatus)
                 .build();
     }
-
-
-    private Predicate<ValidationResult> isValidationResultSuccess() {
-        return validationResult -> validationResult.getValidationStatus().equals(ValidationStatus.SUCCESS);
-    }
-
-
-    private ValidationStatus returnFailIfSuccessValidationResultsIsEmptyElseReturnSuccess(List<ValidationResult> successValidationResults) {
-        if (successValidationResults == null || successValidationResults.size() == 0) {
-            return ValidationStatus.FAIL;
-        }
-        return ValidationStatus.SUCCESS;
-    }
+    
 }
