@@ -1,9 +1,7 @@
-package org.baldogru.imagegallery.factory;
+package org.baldogru.imagegallery.service.validator;
 
 import org.baldogru.imagegallery.constants.ValidationStatus;
 import org.baldogru.imagegallery.model.dto.ValidationResult;
-import org.baldogru.imagegallery.model.dto.ValidationSummary;
-import org.baldogru.imagegallery.service.validator.ValidationStatusService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,25 +9,20 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
-class ValidationSummaryFactoryImpl implements ValidationSummaryFactory {
+final class ValidationStatusServiceImpl implements ValidationStatusService {
 
-    private final ValidationStatusService validationStatusService;
-
-    public ValidationSummaryFactoryImpl(ValidationStatusService validationStatusService) {
-        this.validationStatusService = validationStatusService;
+    public ValidationStatusServiceImpl() {
     }
 
     @Override
-    public ValidationSummary create(List<ValidationResult> validationResults) {
+    public ValidationStatus validate(List<ValidationResult> validationResults) {
+        //Tutaj też musze sprwadzić czy validationResults nie jest nullem, ale co zrobić w przypadku jeśli będzie ?
+        //Przydał by się może jakiś nowy ValidationStatus np. BAD_REQUEST ?
         List<ValidationResult> successValidationResults =
                 validationResults.stream()
                         .filter(isValidationResultSuccess())
                         .collect(Collectors.toList());
-        ValidationStatus validationStatus = validationStatusService.validate(validationResults);
-        return ValidationSummary.builder()
-                .validationResults(validationResults)
-                .validationStatus(validationStatus)
-                .build();
+        return returnFailIfSuccessValidationResultsIsEmptyElseReturnSuccess(successValidationResults);
     }
 
 
