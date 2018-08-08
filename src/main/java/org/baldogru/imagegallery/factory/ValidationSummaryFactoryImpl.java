@@ -18,7 +18,9 @@ class ValidationSummaryFactoryImpl implements ValidationSummaryFactory {
     @Override
     public ValidationSummary create(List<ValidationResult> validationResults) {
         List<ValidationResult> successValidationResults =
-                validationResults.stream().filter(isValidationResultSuccess()).collect(Collectors.toList());
+                validationResults.stream()
+                        .filter(isValidationResultSuccess())
+                        .collect(Collectors.toList());
         ValidationStatus validationStatus = returnFailIfSuccessValidationResultsIsEmptyElseReturnSuccess(successValidationResults);
         return ValidationSummary.builder()
                 .validationResults(validationResults)

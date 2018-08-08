@@ -23,14 +23,15 @@ final class FileExtensionValidator implements SpecializedValidator {
     public ValidationResult validate(RequestData requestData) {
         String fileName = requestData.getImageFile().getName();
         String fileExtension = FilenameUtils.getExtension(fileName);
-        Optional<String> validatedFile = allowedImageExtensions.stream().filter(allowedExtension -> allowedExtension.equals(fileExtension)).findFirst();
+        Optional<String> validatedFile = allowedImageExtensions.stream()
+                .filter(allowedExtension -> allowedExtension.equals(fileExtension))
+                .findFirst();
         if (validatedFile.isPresent()) {
             return ValidationResult.builder()
                     .validationStatus(ValidationStatus.SUCCESS)
                     .build();
         }
-        return ValidationResult
-                .builder()
+        return ValidationResult.builder()
                 .validationStatus(ValidationStatus.FAIL)
                 .build();
     }
